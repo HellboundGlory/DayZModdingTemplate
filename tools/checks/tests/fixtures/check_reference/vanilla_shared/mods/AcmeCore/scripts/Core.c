@@ -1,0 +1,4 @@
+class AcmeThing
+{
+	FixtureSharedName value;
+};

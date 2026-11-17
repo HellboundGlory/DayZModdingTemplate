@@ -1,0 +1,4 @@
+-        2  CHANGELOG.md  [.pboignore line 6: /*.md]
+garbage that is not part of a file list
++      162  config.cpp  [game file]
+2 of 3 files packed, 164 bytes

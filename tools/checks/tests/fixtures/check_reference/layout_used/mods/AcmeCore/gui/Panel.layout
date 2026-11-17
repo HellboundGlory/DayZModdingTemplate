@@ -1,0 +1,4 @@
+class FixtureRoot
+{
+	name = "FixtureLayoutName";
+};

@@ -1,0 +1,5 @@
+class AcmeThing
+{
+	// FixtureCommentOnly
+	/* FixtureCommentOnly */
+};

@@ -1,0 +1,4 @@
+PanelWidget
+{
+	name = "AcmeMarketEntry";
+};

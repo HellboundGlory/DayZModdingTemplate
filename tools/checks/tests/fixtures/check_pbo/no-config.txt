@@ -1,0 +1,2 @@
++        9  Scripts/a.c  [game file]
+1 of 1 files packed, 9 bytes

@@ -1,0 +1,4 @@
++        2  docs [old]/a.c  [game file]
++       23  notes [draft].md  [game file]
++      162  config.cpp  [game file]
+3 of 3 files packed, 187 bytes

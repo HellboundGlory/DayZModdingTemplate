@@ -1,0 +1,4 @@
+class Thing
+{
+	FixtureIndented value;
+};

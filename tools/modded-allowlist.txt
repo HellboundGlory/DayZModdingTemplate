@@ -1,0 +1,3 @@
+# Every modded class under mods/, one row each, tab separated: ModId, class, owner, reason.
+# The owner is where the patched class is declared: vanilla, a framework's name in lower case (from
+# tools/family.conf), or the family prefix in lower case for a patch of a class from another of the family's mods.

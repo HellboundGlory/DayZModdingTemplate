@@ -1,0 +1,7 @@
+class FixtureSharedName
+{
+};
+
+class FixtureUpstreamOnly
+{
+};

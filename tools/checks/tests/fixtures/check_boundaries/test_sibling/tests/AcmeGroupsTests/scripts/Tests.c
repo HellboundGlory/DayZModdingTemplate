@@ -1,0 +1,4 @@
+class AcmeGroupsTestsCase
+{
+	AcmeMarketEntry entry;
+};

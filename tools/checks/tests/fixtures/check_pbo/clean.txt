@@ -1,0 +1,7 @@
++       13  Scripts/3_Game/AcmeCoreLog.c  [game file]
++      162  config.cpp  [game file]
+-        2  CHANGELOG.md  [.pboignore line 6: /*.md]
+-       40  docs/notes.md  [.pboignore line 1: /docs/]
+-        2  docs/a.md  [skipped folder]
+-        4  server/x.log  [not a game file]
+2 of 6 files packed, 175 bytes

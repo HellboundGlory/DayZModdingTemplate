@@ -1,0 +1,3 @@
++        2  Test/t.c  [game file]
++      162  config.cpp  [game file]
+2 of 2 files packed, 164 bytes

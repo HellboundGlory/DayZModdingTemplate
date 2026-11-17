@@ -1,0 +1,6 @@
+class CfgPatches
+{
+	class AcmeCore
+	{
+	};
+};

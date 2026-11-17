@@ -1,0 +1,5 @@
+# Every modded class under mods/, one row each.
+# ModId	class	owner	reason
+
+AcmeCore	CarScript	vanilla	a car keeps its owner across restarts
+AcmeOther	OptionsTabView	forge	Default has to reach every row of a tab

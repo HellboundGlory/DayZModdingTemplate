@@ -1,0 +1,4 @@
+class AcmeCoreBase
+{
+	AcmeMarketEntry entry;
+};

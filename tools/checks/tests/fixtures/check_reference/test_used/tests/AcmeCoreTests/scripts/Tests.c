@@ -1,0 +1,4 @@
+class FixtureTest
+{
+	FixtureUpstreamAlpha value;
+};
