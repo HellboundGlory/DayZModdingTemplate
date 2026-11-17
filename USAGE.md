@@ -15,6 +15,17 @@ Mod ids are one token with no underscore (`AGENTS.md` rule 5). For a mod `MyId`:
 4. The shared test server: once, create `server/` at the repo root with your `serverDZ.cfg` (git ignores it). In each
    of the two mod folders, link it with `ln -s ../../server server` and keep it out of the PBO with a `.pboignore`
    file holding the line `/server/` (`mf new` does not make one). `mf run --help` explains launch sets.
+5. Bring the scaffold in line with the family checks (`mf new` writes its own defaults), in both folders:
+   - Rename the `CfgPatches` class `MyId_Scripts` to `MyId` (one name, rule 5), and the test mod's to `MyIdTests`.
+   - In the core mod's `requiredAddons`, list at least one CfgPatches name of each framework in
+     `tools/family.conf`; every other mod lists the core's instead, and a test mod its own mod.
+   - Add `version = "0.1.0";` inside the `CfgMods` class, beside `type`; `sync-version` keeps it in step with
+     `VERSION`.
+   - A file holding `modded class X` is named `X.c`, so rename the scaffold's `MyIdMission.c` to `MissionServer.c`
+     (or delete it). It opens with four `//` lines: `// Why:` the reason, then what breaks without it, then
+     `// Layer:` and why the class sits in that script layer, then which other mods patch the class. Give each
+     patched class a row in `tools/modded-allowlist.txt`.
+   Then run the checks (§Running the checks); each should print `OK`.
 5. Add a `## <ModId>` heading for its decisions in `docs/design/decisions.md` and a row in
    `docs/design/architecture.md`.
 
