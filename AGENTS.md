@@ -18,9 +18,9 @@ decision disagree, the decision wins; if it looks wrong, ask.
 - Layout: `mods/<Id>/` per mod, `tests/<Id>Tests/` per test mod, Rust checks in `tools/`, docs in `docs/`. Shared
   contracts live inside the core mod, because a PBO packs only its mod folder.
 - One test server for the family: `server/` at the repo root, ignored by git.
-- Versions: every mod is 0.1.0 until its first release, 1.0.0. Change them only with the version tool in `tools/`.
+- Versions: every mod is 0.1.0 until its first release, 1.0.0. Change them only with `checks sync-version` (`USAGE.md`).
 - ModFoundry (`mf`) is optional: https://github.com/HellboundGlory/ModFoundry-DayZ. Without it the edit hook and
-  the checks that need it skip with a note (`docs/modfoundry.md`).
+  `check-pbo` skip with a note (`docs/modfoundry.md`).
 
 ## DayZ hard rules
 

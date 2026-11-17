@@ -46,8 +46,8 @@ dependencies, and the server link.
 - The edit hook (`tools/edit-check.sh`) runs `mf validate`, `mf lint` or `mf layout check` on each edited
   `config.cpp`, `.c` or `.layout` file. It warns and never blocks. "note: game check skipped" means the mod's
   dependencies are not saved: `mf deps add`.
-- The Rust checks in `tools/` run with `cargo run --manifest-path tools/Cargo.toml -- <check>`; each skips with a
-  note when it needs ModFoundry and it is missing.
+- The Rust checks in `tools/` run with `cargo run --manifest-path tools/Cargo.toml -- <check>`; `USAGE.md`
+  lists them. Only `check-pbo` needs ModFoundry, and it skips with a note without it.
 - ModFoundry usage, test runs and game updates: `docs/modfoundry.md`.
 
 ## When something fails in game

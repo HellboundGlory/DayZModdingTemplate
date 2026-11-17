@@ -14,7 +14,7 @@ ModFoundry: download the newest package from its
 [Releases page](https://github.com/HellboundGlory/ModFoundry-DayZ/releases) and follow its
 [INSTALL.md](https://github.com/HellboundGlory/ModFoundry-DayZ/blob/main/INSTALL.md); `install.sh` registers the MCP
 server with your agents. Then run `mf doctor` to see the DayZ and Workshop folders it found. Without ModFoundry the
-template still works: the hook and the checks that need it say so and skip.
+template still works: the edit hook and `check-pbo` say so and skip.
 
 A coding agent: Claude Code reads `AGENTS.md`, `.claude/skills/` and `.claude/agents/` (which `setup.sh` fills from
 `.agents/`). It reads `AGENTS.md` only when there is no `CLAUDE.md` in the folder or above it; if you keep one, have
