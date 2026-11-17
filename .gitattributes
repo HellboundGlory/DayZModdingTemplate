@@ -1,2 +1,4 @@
 * text=auto
 *.sh text eol=lf
+# test fixtures are compared byte for byte, line endings included
+tools/checks/tests/fixtures/** -text
