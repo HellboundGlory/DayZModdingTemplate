@@ -1,0 +1,8 @@
+# build output
+builds/
+tools/target/
+# the shared test server: config and profiles, reached from each mod through its `server` link
+/server/
+# local settings that may hold machine paths or a real Steam id
+*.local.*
+.claude/settings.local.json
