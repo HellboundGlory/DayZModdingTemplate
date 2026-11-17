@@ -19,12 +19,12 @@ pub static STRING_LITERAL: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r#"^"(?:\\.|[^"\\])*"$"#).unwrap());
 
 pub fn check_mf() -> Result<(), String> {
-    // /usr/bin/mf is METAFONT and waits at a prompt, so it gets no stdin to read.
+    // TeX's METAFONT is also called mf and waits at a prompt, so it gets no stdin to read.
     let out = Command::new("mf")
         .arg("--version")
         .stdin(Stdio::null())
         .output()
-        .map_err(|_| "ModFoundry mf not found on PATH (/usr/bin/mf is METAFONT)".to_string())?;
+        .map_err(|_| "ModFoundry mf not found on PATH".to_string())?;
     let text = String::from_utf8_lossy(&out.stdout);
     let mut chars = text.trim().chars();
     let ok = chars.by_ref().take(3).collect::<String>() == "mf "
@@ -32,7 +32,7 @@ pub fn check_mf() -> Result<(), String> {
     if ok {
         Ok(())
     } else {
-        Err("ModFoundry mf not found first on PATH (/usr/bin/mf is METAFONT)".to_string())
+        Err("ModFoundry mf not found first on PATH (TeX's METAFONT is also called mf)".to_string())
     }
 }
 

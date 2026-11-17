@@ -219,12 +219,12 @@ fn without_modfoundry_the_build_check_is_skipped() {
         (
             "METAFONT first on PATH",
             metafont,
-            "skipped: ModFoundry mf not found first on PATH",
+            "skipped: ModFoundry mf not found first on PATH (TeX's METAFONT is also called mf)\n",
         ),
         (
             "no mf on PATH",
             empty,
-            "skipped: ModFoundry mf not found on PATH",
+            "skipped: ModFoundry mf not found on PATH\n",
         ),
     ];
     for (name, bin, needle) in cases {

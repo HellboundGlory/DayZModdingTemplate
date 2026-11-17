@@ -278,4 +278,5 @@ if command -v gh >/dev/null && [ -n "$origin" ] && [[ "$origin" != *"$TEMPLATE_R
 fi
 
 echo
-echo "Done. Review the changes with 'git diff', commit them, then add your core mod: USAGE.md §Adding a mod."
+echo "Done. Review the changes with 'git status' and 'git diff' (tools/family.conf is new) and commit them."
+echo "Then add your core mod: USAGE.md §Adding a mod."
