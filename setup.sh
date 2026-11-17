@@ -229,7 +229,7 @@ replace_in LICENSE "Copyright (c) 2026 Hellbound" "Copyright (c) $(date +%Y) $au
 mkdir -p tools
 {
   cat <<'EOF'
-# The family's values the checks in tools/ read. `checks family` shows them.
+# The family's values the checks in tools/ read. The `family` check shows them (USAGE.md).
 # Comments take a whole line. A relative path is under the repo root, and ~ is HOME.
 EOF
   printf 'prefix = %s\ncore = %s\n' "$prefix" "$core"

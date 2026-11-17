@@ -72,6 +72,6 @@ Test runs (server, client, self test) and game updates: `docs/modfoundry.md`.
 
 - `AGENTS.md` is the rule file every agent reads.
 - `.agents/skills/` and `.agents/agents/` are the sources. Claude Code reads only `.claude/skills/` and
-  `.claude/agents/`, so `setup.sh` copies them there; run `./setup.sh --sync-agents` after changing a source, and `./setup.sh --check-agents` to see whether a copy
-  differs from its source (exit 1).
+  `.claude/agents/`, so `setup.sh` copies them there; run `./setup.sh --sync-agents` after changing a source, and
+  `./setup.sh --check-agents` to see whether a copy differs from its source (exit 1).
 - `.agents/personas/` holds the reviewer and refactoring personas the engineering rules name.

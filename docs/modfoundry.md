@@ -192,9 +192,10 @@ The run summaries of `mf run`, `mf run-client`, `mf run-diag` and `mf status` pr
 ### Server logs
 
 A test server writes logs on every run. Keep only the last two runs' logs, RPTs, ADMs and dumps in its `profiles/`
-folder, and remove check folders that boots leave behind. Prune before each test run (`checks prune-server-logs <profiles>`), and never delete a file
-written in the last 15 minutes: a server may still be running. Keep a separate profiles folder for automated test runs, so each one
-starts with empty mod logs and you read a test's logs in one known place.
+folder, and remove check folders that boots leave behind. Prune before each test run (the `prune-server-logs` check,
+`USAGE.md`), and never delete a file written in the last 15 minutes: a server may still be running. Keep a separate
+profiles folder for automated test runs, so each one starts with empty mod logs and you read a test's logs in one known
+place.
 
 ## Reporting gaps
 

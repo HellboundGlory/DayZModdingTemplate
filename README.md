@@ -22,7 +22,8 @@ It holds no mods and no code examples. Framework and reference mods are read whe
 1. On GitHub, press **Use this template**, create your repo, and clone it.
 2. Install what `PREREQUISITES.md` lists.
 3. Run `./setup.sh` in the clone (Git Bash on Windows). It asks for your mod family's name, prefix, core mod, author,
-   git identity, target DayZ build, frameworks, reference mods and game paths, fills in the placeholders, and writes `tools/family.conf` for the checks.
+   git identity, target DayZ build, frameworks, reference mods and game paths, fills in the placeholders, and writes
+   `tools/family.conf` for the checks.
 4. Add your first mod: `USAGE.md` §Adding a mod.
 
 Tested on Linux only. The setup script is plain bash and should run in Git Bash on Windows, but that is untested,
