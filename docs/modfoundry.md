@@ -13,7 +13,7 @@ workflow are built around it.
   - [USAGE.md](https://github.com/HellboundGlory/ModFoundry-DayZ/blob/main/USAGE.md)
   - [CHANGELOG.md](https://github.com/HellboundGlory/ModFoundry-DayZ/blob/main/CHANGELOG.md) (`mf changelog` prints it)
 
-Written against ModFoundry 2.3.0, which the template's `mf new` and `mf deps` steps need; 2.2.0, the first public
+Written against ModFoundry 2.3.1; 2.3.0 is the least the template's `mf new` and `mf deps` steps need (2.3.1 only fixes `mf deps list` leaving out a row of the file); 2.2.0, the first public
 release, lacks `--patch-class`, `--required-addon` and the dependency file (`mf update` brings it up to date).
 `mf <command> --help` is the exact list of flags for the build you have.
 
@@ -58,7 +58,7 @@ no setup. (2.2.0 kept the list in ModFoundry's own database on this machine, by 
 again.) Until a mod has them, the edit hook prints "game check skipped" on every edit.
 
 `--machine` changes this machine's own list instead of the file; where both name the same mod, the machine's row wins.
-`mf deps list` ends each row with `(file)`, `(machine)` or `(defaults)`, saying where it came from.
+`mf deps list` ends each row with `(file)`, `(machine)` or `(defaults)`, saying where it came from. Every row of the file is listed; 2.3.0 hid a mod the file named when the machine's list or the Defaults held the same mod as a test mod only.
 
 For one run, `--dependency <path>` (repeatable) or `--no-dependencies` overrides the saved list. Over MCP,
 `project.dependencies` reads the list and `project.edit_dependencies` changes it (`where: "machine"` for `--machine`).
