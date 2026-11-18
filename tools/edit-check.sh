@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # PostToolUse hook: runs ModFoundry's check on the edited file and reports findings without blocking.
-# Dependencies come from `mf deps`, saved per mod on this machine (docs/modfoundry.md).
+# Dependencies come from `mf deps`, saved in each mod's .modfoundry/dependencies.json (docs/modfoundry.md).
 set -u
 input=$(cat)
 

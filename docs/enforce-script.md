@@ -1,9 +1,10 @@
 # Enforce Script: what `mf lint` catches, and what it does not
 
 These notes were found on DayZ 1.30 (builds 1.30.164200 and 1.30.164289) with ModFoundry 2.1.0's `mf lint`.
-ModFoundry 2.2.0 added no new catches: its changelog lists `mf deps` (saved dependencies), `mf update` and release
-packages. Each item is rechecked when a new game build comes out, so treat a date below as the day it was seen, not
-as a promise for later builds.
+ModFoundry 2.2.0 added no new catches (its changelog lists `mf deps`, `mf update` and release packages), and 2.3.0 adds
+one report: `MF-E4005`, an error naming the module when the game refuses it and no finding lies on the linted path,
+where `mf lint` used to say ok. Each item is rechecked when a new game build comes out, so treat a date below as the
+day it was seen, not as a promise for later builds.
 
 "Probe" means a small throwaway test mod. "Boot" means a server or client start. "Read in source" means the trap was
 read in the game's or a framework's scripts and not seen failing. Say which one you have when you add a line.
@@ -14,11 +15,11 @@ Since ModFoundry 2.1.0, `mf lint` runs the game's own compiler for the retail se
 client. Three things decide whether the game check really ran:
 
 - **Dependencies.** The mod's framework mods (Community Framework, Dabs, and any other mod yours needs) must be known to
-  `mf lint`. Since 2.2.0 (its changelog), save them once with `mf deps add <mod> <dependency>`, or pass them for one run with
-  `--dependency <mod folder>`. Without any, the CLI printed `note: game check skipped` and then ok (2.1.0,
-  2026-11-16). Over MCP, `script_lint` with an empty dependency list ran the game check, which failed the module on
-  every build while listing no findings (2026-11-17). Read the game-check lines, not the exit code or the findings
-  count.
+  `mf lint`. Since 2.2.0 (its changelog), save them with `mf deps add <mod> <dependency>`; from 2.3.0 that writes a
+  file inside the mod that you commit. Or pass them for one run with `--dependency <mod folder>`. Without any, the CLI
+  printed `note: game check skipped` and then ok (2.1.0, 2026-11-16). Over MCP, `script_lint` with an empty dependency
+  list ran the game check, which failed the module on every build while listing no findings (2026-11-17). Read the
+  game-check lines, not the exit code or the findings count.
 - **`[diag-client]` findings.** A finding with this tag is a client-only break. The retail build and the servers never
   compile code inside `#ifndef NO_GUI`, so only the Diag client sees it.
 - **Test mods.** Run it on the mod and on its test mod, each with its dependencies.

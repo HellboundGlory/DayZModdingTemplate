@@ -4,29 +4,35 @@
 
 Mod ids are one token with no underscore (`AGENTS.md` rule 5). For a mod `MyId`:
 
-1. Scaffold it: `mf new MyId --dir mods/MyId --author "<you>"` (or write `config.cpp`, `mod.cpp` and the script
-   folders by hand without ModFoundry).
-2. Add its test mod the same way: `mf new MyIdTests --dir tests/MyIdTests`, then add `"MyId"` to the
-   `requiredAddons` of its `config.cpp` by hand (`mf new` lists only `DZ_Data`). The test mod never ships.
+1. Scaffold it (ModFoundry 2.3.0 or later; with an older one, or without ModFoundry, write `config.cpp`, `mod.cpp` and
+   the script folders by hand and make the edits in step 5 yourself):
+   `mf new MyId --dir mods/MyId --author "<you>" --patch-class MyId --required-addon <patch>`, one
+   `--required-addon` for each CfgPatches name `tools/family.conf` lists for a framework (the core mod), or for the
+   core's own name (any other mod). It writes the `CfgPatches` class as `MyId` (one name, rule 5), the
+   `requiredAddons`, a `version` line in `CfgMods` and a starter `Scripts/5_Mission/MissionServer.c`; add
+   `--no-starter` when the mod patches no mission class.
+2. Add its test mod the same way, listing its own mod:
+   `mf new MyIdTests --dir tests/MyIdTests --patch-class MyIdTests --required-addon MyId --no-starter`. The test mod
+   never ships.
 3. Save the dependencies `mf lint` and the game check use, for both:
    `mf deps add mods/MyId <framework Workshop id or folder>` for each framework, plus `mods/<core mod>` for any mod
-   that is not the core; the test mod also gets `mods/MyId`. `mf deps list mods/MyId` shows them. They are saved on
-   this machine by absolute path, so a new clone or worktree saves them again (`docs/modfoundry.md`).
+   that is not the core; the test mod also gets `mods/MyId`. The list goes into `.modfoundry/dependencies.json` in each
+   mod (Workshop ids, and folders relative to the mod), so commit it: a new clone or worktree has the dependencies at
+   once. `mf deps list mods/MyId` shows them (`docs/modfoundry.md`).
 4. The shared test server: once, create `server/` at the repo root with your `serverDZ.cfg` (git ignores it). In each
    of the two mod folders, link it with `ln -s ../../server server` and keep it out of the PBO with a `.pboignore`
    file holding the line `/server/` (`mf new` does not make one). `mf run --help` explains launch sets.
-5. Bring the scaffold in line with the family checks (`mf new` writes its own defaults), in both folders:
-   - Rename the `CfgPatches` class `MyId_Scripts` to `MyId` (one name, rule 5), and the test mod's to `MyIdTests`.
-   - In the core mod's `requiredAddons`, list at least one CfgPatches name of each framework in
-     `tools/family.conf`; every other mod lists the core's instead, and a test mod its own mod.
-   - Add `version = "0.1.0";` inside the `CfgMods` class, beside `type`; `sync-version` keeps it in step with
-     `VERSION`.
-   - A file holding `modded class X` is named `X.c`, so rename the scaffold's `MyIdMission.c` to `MissionServer.c`
-     (or delete it). It opens with four `//` lines: `// Why:` the reason, then what breaks without it, then
-     `// Layer:` and why the class sits in that script layer, then which other mods patch the class. Give each
-     patched class a row in `tools/modded-allowlist.txt`.
+5. Finish what the family checks want:
+   - A file holding `modded class X` is named `X.c` (the scaffold's starter is already `MissionServer.c`) and opens
+     with four `//` lines: `// Why:` the reason, then what breaks without it, then `// Layer:` and why the class sits
+     in that script layer, then which other mods patch the class. Give each patched class a row in
+     `tools/modded-allowlist.txt`. The starter has neither, so `check-modded` fails until you add them or delete it.
+   - `sync-version` keeps the `version` line in `CfgMods` in step with `VERSION`.
+   - Made by hand, or by an `mf new` older than 2.3.0: the `CfgPatches` class named as the mod (the test mod's
+     `MyIdTests`), the `requiredAddons` of step 1, that `version = "0.1.0";` line inside the `CfgMods` class, beside
+     `type`, and a starter named `MyIdMission.c` renamed to `MissionServer.c` (or deleted).
    Then run the checks (§Running the checks); each should print `OK`.
-5. Add a `## <ModId>` heading for its decisions in `docs/design/decisions.md` and a row in
+6. Add a `## <ModId>` heading for its decisions in `docs/design/decisions.md` and a row in
    `docs/design/architecture.md`.
 
 ## Running the checks

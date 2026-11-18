@@ -13,7 +13,9 @@ workflow are built around it.
   - [USAGE.md](https://github.com/HellboundGlory/ModFoundry-DayZ/blob/main/USAGE.md)
   - [CHANGELOG.md](https://github.com/HellboundGlory/ModFoundry-DayZ/blob/main/CHANGELOG.md) (`mf changelog` prints it)
 
-Written against ModFoundry 2.2.0. `mf <command> --help` is the exact list of flags for the build you have.
+Written against ModFoundry 2.3.0, which the template's `mf new` and `mf deps` steps need; 2.2.0, the first public
+release, lacks `--patch-class`, `--required-addon` and the dependency file (`mf update` brings it up to date).
+`mf <command> --help` is the exact list of flags for the build you have.
 
 ## Install and connect an agent
 
@@ -47,16 +49,21 @@ are. A new mod's dependencies come from the game install and the Steam Workshop 
 ```sh
 mf deps add <mod folder> 1559212036      # Workshop id (all digits), or a mod folder
 mf deps list <mod folder>
-mf deps remove <mod folder> workshop:1559212036   # exactly as `list` shows it; a folder dependency by its absolute path
+mf deps remove <mod folder> workshop:1559212036   # the name `list` prints, a Workshop id, or a folder path
 ```
 
-The saved list lives in ModFoundry's own database on this machine, not in the repo, and a mod folder (yours or a
-dependency) is saved by its absolute path. Each clone, worktree or moved folder saves its dependencies again; until
-then the edit hook prints "game check skipped" on every edit.
+Since ModFoundry 2.3.0 the list is written to `.modfoundry/dependencies.json` inside the mod: Workshop ids, and
+dependency folders relative to the mod. Commit it, and every clone, worktree or moved folder has its dependencies with
+no setup. (2.2.0 kept the list in ModFoundry's own database on this machine, by absolute path, and each clone saved it
+again.) Until a mod has them, the edit hook prints "game check skipped" on every edit.
+
+`--machine` changes this machine's own list instead of the file; where both name the same mod, the machine's row wins.
+`mf deps list` ends each row with `(file)`, `(machine)` or `(defaults)`, saying where it came from.
 
 For one run, `--dependency <path>` (repeatable) or `--no-dependencies` overrides the saved list. Over MCP,
-`project.dependencies` reads the list and `project.edit_dependencies` changes it. An unknown-type warning (`MF-W3002`)
-usually means a dependency is missing.
+`project.dependencies` reads the list and `project.edit_dependencies` changes it (`where: "machine"` for `--machine`).
+An unknown-type warning (`MF-W3002`) usually means a dependency is missing. When the game refuses a module and none of
+its findings lie on the path you linted, 2.3.0 reports one `MF-E4005` error naming the module instead of saying ok.
 
 ### Read and search the game and dependency mods
 
@@ -106,6 +113,12 @@ Two things to know about `mf lint`:
 
 What the game check catches and what it misses: [enforce-script.md](enforce-script.md). Run `mf lint` on the mod and on
 its test mod. `mf layout check` also takes `--root` and `--game`.
+
+`mf layout render <file.layout> [--size WxH] [--out x.png] [--json]` (2.3.0, MCP `layout_render`) draws a layout to a
+PNG without starting the game, and lists what it cannot draw as `MF-L2xx` hints with line numbers. Text sizes and
+placement, border sizes and the sizes from `size to text` and `Size To Content` are approximations, so use it to see a
+layout's shape and check a change in game before you rely on a pixel. Without `--out` it writes
+`<layout name>.render.png` in the current folder.
 
 Use `--preview` on any command that changes files to see the change-set first, and `mf undo` to roll back the newest
 one.

@@ -39,7 +39,7 @@ Shared rules for all of them: `specialist-rules.md` beside this file.
 ## Adding a mod
 
 `USAGE.md` §Adding a mod has the steps: the folder under `mods/`, its test mod under `tests/`, `mf deps add` for its
-dependencies, and the server link.
+dependencies (saved in the mod's `.modfoundry/dependencies.json`, which is committed), and the server link.
 
 ## Checks
 
